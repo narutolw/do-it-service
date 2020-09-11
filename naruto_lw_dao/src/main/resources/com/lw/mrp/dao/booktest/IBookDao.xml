@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lw.mrp.dao.booktest.IBookDao">
+    <resultMap type="com.lw.mrp.model.booktest.Book" id="bookResultMap" >
+        <id property="bookId" column="id"/>
+        <result property="bookName" column="name"/>
+        <result property="bookAuthor" column="author"/>
+        <result property="bookContent" column="content"/>
+        <result property="bookAddDate" column="add_date"/>
+    </resultMap>
+
+    <select id="queryAllBook" resultMap="bookResultMap">
+        SELECT
+            id, name, author, content, add_date
+        FROM
+            book
+    </select>
+
+    <select id="queryBookById" resultMap="bookResultMap">
+        SELECT
+            id, name, author, content, add_date
+        FROM
+            sys.book t
+        WHERE
+            t.id = #{book.bookId, jdbcType=VARCHAR}
+    </select>
+
+</mapper>
